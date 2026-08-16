@@ -1,0 +1,8 @@
+fastapi>=0.110
+uvicorn[standard]>=0.29
+pydantic>=2.6
+
+# Optional — only needed for Google Drive backup of enquiries.csv.
+# The app runs fine without these; Drive sync is just skipped.
+google-api-python-client>=2.100
+google-auth>=2.23

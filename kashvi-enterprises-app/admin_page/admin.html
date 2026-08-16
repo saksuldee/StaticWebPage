@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Follow-up Report — Kashvi Enterprises Admin</title>
+<link rel="icon" href="/images/mark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Work+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0B1852;
+    --navy-dark:#060E36;
+    --navy-soft:#141F5C;
+    --gold:#F2A91F;
+    --gold-dark:#C98607;
+    --bg:#F5F6FA;
+    --panel:#FFFFFF;
+    --ink:#141A38;
+    --muted:#5B6180;
+    --line:#E4E5F1;
+    --new:#2F6FED;
+    --contacted:#C98607;
+    --resolved:#1C9A5B;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:'Work Sans', sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{font-family:'Space Grotesk', sans-serif;margin:0;}
+  .mono{font-family:'JetBrains Mono', monospace;}
+  a{color:inherit;}
+
+  header{
+    background:var(--navy);
+    color:#fff;
+    padding:20px 28px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:16px;
+  }
+  .brand{display:flex;align-items:center;gap:12px;}
+  .brand img{height:32px;}
+  .brand-text{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:18px;line-height:1.1;}
+  .brand-text span{
+    display:block;
+    font-family:'JetBrains Mono',monospace;
+    font-weight:400;
+    font-size:11px;
+    letter-spacing:0.14em;
+    color:var(--gold);
+    margin-top:3px;
+  }
+  .header-actions{display:flex;gap:10px;flex-wrap:wrap;}
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-size:13.5px;
+    font-weight:600;
+    padding:10px 16px;
+    border-radius:999px;
+    border:1px solid rgba(255,255,255,0.22);
+    background:transparent;
+    color:#fff;
+    cursor:pointer;
+    text-decoration:none;
+    transition:background .15s ease, border-color .15s ease;
+  }
+  .btn:hover{background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.4);}
+  .btn.primary{
+    background:var(--gold);
+    color:var(--navy-dark);
+    border-color:var(--gold);
+  }
+  .btn.primary:hover{background:#fff;border-color:#fff;}
+  .btn svg{width:15px;height:15px;}
+
+  main{padding:28px;max-width:1320px;margin:0 auto;}
+
+  .stats{
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
+    gap:16px;
+    margin-bottom:26px;
+  }
+  .stat-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:18px 20px;
+  }
+  .stat-card .label{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.07em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin-bottom:8px;
+  }
+  .stat-card .value{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:28px;
+    font-weight:700;
+  }
+  .stat-card.new .value{color:var(--new);}
+  .stat-card.contacted .value{color:var(--contacted);}
+  .stat-card.resolved .value{color:var(--resolved);}
+  .stat-card.due .value{color:#D0472C;}
+
+  .toolbar{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    align-items:center;
+    margin-bottom:18px;
+  }
+  .toolbar input[type="search"],
+  .toolbar select{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:10px 14px;
+    font-family:'Work Sans',sans-serif;
+    font-size:14px;
+    color:var(--ink);
+    outline:none;
+  }
+  .toolbar input[type="search"]{flex:1;min-width:200px;}
+  .toolbar input[type="search"]:focus,
+  .toolbar select:focus{border-color:var(--gold-dark);}
+  .result-count{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12.5px;
+    color:var(--muted);
+    white-space:nowrap;
+  }
+
+  .table-wrap{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+  }
+  table{width:100%;min-width:1080px;border-collapse:collapse;}
+  .scroll-hint{
+    display:none;
+    align-items:center;
+    gap:6px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11.5px;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  @media (max-width: 900px){
+    .scroll-hint{display:flex;}
+  }
+  thead th{
+    text-align:left;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--muted);
+    padding:14px 16px;
+    border-bottom:1px solid var(--line);
+    background:#FAFAFD;
+    white-space:nowrap;
+  }
+  tbody td{
+    padding:14px 16px;
+    border-bottom:1px solid var(--line);
+    font-size:13.8px;
+    vertical-align:top;
+  }
+  tbody tr:last-child td{border-bottom:none;}
+  tbody tr:hover{background:#FAFAFD;}
+  .cell-id{font-family:'JetBrains Mono',monospace;color:var(--muted);}
+  .cell-date{font-family:'JetBrains Mono',monospace;color:var(--muted);white-space:nowrap;font-size:12.5px;}
+  .cell-name{font-weight:600;}
+  .cell-phone a{color:var(--navy);font-weight:500;text-decoration:none;}
+  .cell-phone a:hover{text-decoration:underline;}
+  .service-tag{
+    display:inline-block;
+    background:var(--navy);
+    color:var(--gold);
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    padding:4px 9px;
+    border-radius:999px;
+    white-space:nowrap;
+  }
+  .cell-message{
+    max-width:260px;
+    color:var(--muted);
+    line-height:1.4;
+  }
+  .status-select{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    font-weight:500;
+    padding:7px 10px;
+    border-radius:8px;
+    border:1px solid var(--line);
+    outline:none;
+    cursor:pointer;
+    background:#fff;
+  }
+  .status-select.New{color:var(--new);border-color:#C9D9FA;background:#EEF3FF;}
+  .status-select.Contacted{color:var(--contacted);border-color:#F3DBA4;background:#FDF4E4;}
+  .status-select.Resolved{color:var(--resolved);border-color:#B9E5CC;background:#EAFAF1;}
+
+  .fitted-check{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    cursor:pointer;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    color:var(--muted);
+    white-space:nowrap;
+  }
+  .fitted-check input{
+    width:17px;height:17px;
+    accent-color:var(--resolved);
+    cursor:pointer;
+  }
+  .fitted-check.is-fitted{color:var(--resolved);font-weight:500;}
+
+  .followup-input{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    padding:7px 9px;
+    border-radius:8px;
+    border:1px solid var(--line);
+    outline:none;
+    background:#fff;
+    color:var(--ink);
+    width:140px;
+  }
+  .followup-input:focus{border-color:var(--gold-dark);}
+  .followup-input.overdue{
+    border-color:#F3B9AC;
+    background:#FDEEEA;
+    color:#B8351A;
+  }
+  .followup-badge{
+    display:inline-block;
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px;
+    font-weight:600;
+    letter-spacing:0.04em;
+    color:#B8351A;
+    background:#FDEEEA;
+    border:1px solid #F3B9AC;
+    padding:2px 7px;
+    border-radius:999px;
+    margin-top:5px;
+  }
+  tr.is-overdue{background:#FFFBF9;}
+  tr.is-overdue:hover{background:#FDF3F0;}
+  .actions-cell{display:flex;gap:8px;}
+  .icon-btn{
+    width:30px;height:30px;
+    display:inline-flex;align-items:center;justify-content:center;
+    border-radius:8px;
+    border:1px solid var(--line);
+    color:var(--navy);
+    background:#fff;
+    text-decoration:none;
+    transition:background .15s ease;
+  }
+  .icon-btn:hover{background:#F0F1F8;}
+  .icon-btn svg{width:15px;height:15px;}
+
+  .empty-state, .loading-state{
+    padding:60px 20px;
+    text-align:center;
+    color:var(--muted);
+  }
+  .empty-state h3, .loading-state h3{font-size:17px;margin-bottom:8px;color:var(--ink);}
+
+  .toast{
+    position:fixed;
+    bottom:24px;right:24px;
+    background:var(--navy);
+    color:#fff;
+    padding:12px 18px;
+    border-radius:10px;
+    font-size:13.5px;
+    box-shadow:0 12px 30px rgba(0,0,0,0.2);
+    opacity:0;
+    transform:translateY(8px);
+    transition:opacity .2s ease, transform .2s ease;
+    pointer-events:none;
+    z-index:100;
+  }
+  .toast.show{opacity:1;transform:translateY(0);}
+
+  .drive-pill{
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    padding:8px 14px;
+    border-radius:999px;
+    border:1px solid rgba(255,255,255,0.2);
+    color:#D9DCF2;
+    white-space:nowrap;
+  }
+  .drive-pill .dot{
+    width:7px;height:7px;
+    border-radius:50%;
+    background:#767DAA;
+    flex:none;
+  }
+  .drive-pill.connected .dot{background:#3FCB84;}
+  .drive-pill.error .dot{background:#F26565;}
+  .drive-pill button{
+    background:none;
+    border:none;
+    color:var(--gold);
+    font-family:'JetBrains Mono',monospace;
+    font-size:11.5px;
+    font-weight:600;
+    cursor:pointer;
+    padding:0;
+    text-decoration:underline;
+    text-underline-offset:2px;
+  }
+  .drive-pill button:disabled{opacity:0.5;cursor:not-allowed;}
+
+  .icon-btn.danger{color:#C4472F;}
+  .icon-btn.danger:hover{background:#FDEEEA;border-color:#F3B9AC;}
+
+  .confirm-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(6,14,54,0.55);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:200;
+    padding:20px;
+  }
+  .confirm-overlay.show{display:flex;}
+  .confirm-box{
+    background:#fff;
+    border-radius:var(--radius);
+    padding:26px;
+    max-width:380px;
+    width:100%;
+    box-shadow:0 30px 70px rgba(0,0,0,0.3);
+  }
+  .confirm-box h3{font-size:17px;margin-bottom:8px;}
+  .confirm-box p{font-size:13.8px;color:var(--muted);line-height:1.5;margin-bottom:20px;}
+  .confirm-actions{display:flex;gap:10px;justify-content:flex-end;}
+  .confirm-btn{
+    padding:9px 16px;
+    border-radius:999px;
+    font-size:13.5px;
+    font-weight:600;
+    cursor:pointer;
+    border:1px solid var(--line);
+    background:#fff;
+    color:var(--ink);
+  }
+  .confirm-btn.danger{
+    background:#C4472F;
+    border-color:#C4472F;
+    color:#fff;
+  }
+  .confirm-btn.danger:hover{background:#A93A26;}
+  .confirm-btn.cancel:hover{background:#F5F6FA;}
+
+  @media (max-width: 1200px){
+    .stats{grid-template-columns:repeat(3,1fr);}
+  }
+  @media (max-width: 980px){
+    .stats{grid-template-columns:repeat(2,1fr);}
+    table{font-size:13px;}
+    .cell-message{max-width:160px;}
+  }
+  @media (max-width: 720px){
+    .drive-pill{order:3;width:100%;justify-content:center;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <img src="/images/mark.png" alt="Kashvi Enterprises">
+    <div class="brand-text">KASHVI ADMIN<span>FOLLOW-UP REPORT</span></div>
+  </div>
+  <div class="header-actions">
+    <span class="drive-pill" id="drive-pill">
+      <span class="dot"></span>
+      <span id="drive-pill-text">Checking Drive…</span>
+      <button id="drive-sync-btn" style="display:none;">Sync now</button>
+    </span>
+    <button class="btn" id="refresh-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M21 12a9 9 0 1 1-2.64-6.36M21 4v6h-6"/></svg>
+      Refresh
+    </button>
+    <a class="btn primary" href="/api/enquiries/export">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
+      Export CSV
+    </a>
+  </div>
+</header>
+
+<main>
+  <div class="stats" id="stats">
+    <div class="stat-card">
+      <div class="label">Total Enquiries</div>
+      <div class="value" id="stat-total">—</div>
+    </div>
+    <div class="stat-card new">
+      <div class="label">New</div>
+      <div class="value" id="stat-new">—</div>
+    </div>
+    <div class="stat-card contacted">
+      <div class="label">Contacted</div>
+      <div class="value" id="stat-contacted">—</div>
+    </div>
+    <div class="stat-card resolved">
+      <div class="label">Resolved</div>
+      <div class="value" id="stat-resolved">—</div>
+    </div>
+    <div class="stat-card due">
+      <div class="label">Due / Overdue</div>
+      <div class="value" id="stat-due">—</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">Last 7 Days</div>
+      <div class="value" id="stat-week">—</div>
+    </div>
+  </div>
+
+  <div class="toolbar">
+    <input type="search" id="search" placeholder="Search by name or phone...">
+    <select id="filter-service">
+      <option value="">All services</option>
+    </select>
+    <select id="filter-status">
+      <option value="">All statuses</option>
+      <option value="New">New</option>
+      <option value="Contacted">Contacted</option>
+      <option value="Resolved">Resolved</option>
+    </select>
+    <span class="result-count" id="result-count"></span>
+  </div>
+
+  <p class="scroll-hint">⇠ Swipe sideways to see phone, message and status ⇢</p>
+  <div class="table-wrap">
+    <div id="loading" class="loading-state">
+      <h3>Loading enquiries…</h3>
+      <p>Fetching the latest data from the server.</p>
+    </div>
+    <table id="table" style="display:none;">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Date</th>
+          <th>Name</th>
+          <th>Phone</th>
+          <th>Service</th>
+          <th>Message</th>
+          <th>Status</th>
+          <th>Fitted</th>
+          <th>Next Follow-up</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="tbody"></tbody>
+    </table>
+    <div id="empty" class="empty-state" style="display:none;">
+      <h3>No enquiries match your filters</h3>
+      <p>Try clearing the search or filters above.</p>
+    </div>
+  </div>
+</main>
+
+<div class="toast" id="toast"></div>
+
+<div class="confirm-overlay" id="confirm-overlay">
+  <div class="confirm-box">
+    <h3>Delete this enquiry?</h3>
+    <p id="confirm-message">This removes it permanently from enquiries.csv. This can't be undone.</p>
+    <div class="confirm-actions">
+      <button class="confirm-btn cancel" id="confirm-cancel">Cancel</button>
+      <button class="confirm-btn danger" id="confirm-delete">Delete</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  let allRows = [];
+
+  function fmtDate(iso){
+    try{
+      const d = new Date(iso);
+      return d.toLocaleDateString(undefined, {day:'2-digit', month:'short', year:'numeric'}) +
+             ' · ' + d.toLocaleTimeString(undefined, {hour:'2-digit', minute:'2-digit'});
+    }catch(e){ return iso; }
+  }
+
+  function todayISO(){
+    const d = new Date();
+    const tz = d.getTimezoneOffset() * 60000;
+    return new Date(d - tz).toISOString().slice(0,10);
+  }
+
+  function isOverdue(row){
+    if(!row.next_followup) return false;
+    if(row.status === 'Resolved') return false;
+    return row.next_followup <= todayISO();
+  }
+
+  function showToast(msg){
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(()=>t.classList.remove('show'), 2200);
+  }
+
+  async function fetchEnquiries(){
+    document.getElementById('loading').style.display = 'block';
+    document.getElementById('table').style.display = 'none';
+    document.getElementById('empty').style.display = 'none';
+    try{
+      const res = await fetch('/api/enquiries');
+      if(!res.ok) throw new Error('Request failed: ' + res.status);
+      allRows = await res.json();
+      populateServiceFilter();
+      renderStats();
+      render();
+    }catch(err){
+      document.getElementById('loading').innerHTML =
+        '<h3>Could not load enquiries</h3><p>' + err.message + '</p>';
+      return;
+    }
+    document.getElementById('loading').style.display = 'none';
+  }
+
+  function populateServiceFilter(){
+    const select = document.getElementById('filter-service');
+    const current = select.value;
+    const services = [...new Set(allRows.map(r => r.service).filter(Boolean))].sort();
+    select.innerHTML = '<option value="">All services</option>' +
+      services.map(s => `<option value="${s}">${s}</option>`).join('');
+    select.value = current;
+  }
+
+  function renderStats(){
+    const total = allRows.length;
+    const byStatus = {New:0, Contacted:0, Resolved:0};
+    let lastWeek = 0;
+    let due = 0;
+    const weekAgo = Date.now() - 7*24*60*60*1000;
+    allRows.forEach(r=>{
+      if(byStatus[r.status] !== undefined) byStatus[r.status]++;
+      const t = new Date(r.timestamp).getTime();
+      if(!isNaN(t) && t >= weekAgo) lastWeek++;
+      if(isOverdue(r)) due++;
+    });
+    document.getElementById('stat-total').textContent = total;
+    document.getElementById('stat-new').textContent = byStatus.New;
+    document.getElementById('stat-contacted').textContent = byStatus.Contacted;
+    document.getElementById('stat-resolved').textContent = byStatus.Resolved;
+    document.getElementById('stat-due').textContent = due;
+    document.getElementById('stat-week').textContent = lastWeek;
+  }
+
+  function getFiltered(){
+    const q = document.getElementById('search').value.trim().toLowerCase();
+    const service = document.getElementById('filter-service').value;
+    const status = document.getElementById('filter-status').value;
+    return allRows.filter(r=>{
+      if(service && r.service !== service) return false;
+      if(status && r.status !== status) return false;
+      if(q){
+        const hay = ((r.name||'') + ' ' + (r.phone||'')).toLowerCase();
+        if(!hay.includes(q)) return false;
+      }
+      return true;
+    });
+  }
+
+  function render(){
+    const rows = getFiltered();
+    const tbody = document.getElementById('tbody');
+    const table = document.getElementById('table');
+    const empty = document.getElementById('empty');
+    document.getElementById('result-count').textContent =
+      rows.length + (rows.length === 1 ? ' result' : ' results');
+
+    if(rows.length === 0){
+      table.style.display = 'none';
+      empty.style.display = 'block';
+      if(allRows.length === 0){
+        empty.innerHTML = '<h3>No enquiries yet</h3><p>Submissions from the website\'s enquiry form will show up here.</p>';
+      }else{
+        empty.innerHTML = '<h3>No enquiries match your filters</h3><p>Try clearing the search or filters above.</p>';
+      }
+      return;
+    }
+    empty.style.display = 'none';
+    table.style.display = 'table';
+
+    tbody.innerHTML = rows.map(r => {
+      const overdue = isOverdue(r);
+      const isFitted = r.fitted === 'Yes';
+      return `
+      <tr data-id="${r.id}" class="${overdue ? 'is-overdue' : ''}">
+        <td class="cell-id">#${r.id}</td>
+        <td class="cell-date">${fmtDate(r.timestamp)}</td>
+        <td class="cell-name">${escapeHtml(r.name)}</td>
+        <td class="cell-phone"><a href="tel:${escapeHtml(r.phone)}">${escapeHtml(r.phone)}</a></td>
+        <td><span class="service-tag">${escapeHtml(r.service)}</span></td>
+        <td class="cell-message" title="${escapeHtml(r.message||'')}">${escapeHtml(r.message) || '<span style="color:#B5B9D4;">—</span>'}</td>
+        <td>
+          <select class="status-select ${r.status}" data-id="${r.id}" data-field="status">
+            <option value="New" ${r.status==='New'?'selected':''}>New</option>
+            <option value="Contacted" ${r.status==='Contacted'?'selected':''}>Contacted</option>
+            <option value="Resolved" ${r.status==='Resolved'?'selected':''}>Resolved</option>
+          </select>
+        </td>
+        <td>
+          <label class="fitted-check ${isFitted ? 'is-fitted' : ''}">
+            <input type="checkbox" data-id="${r.id}" data-field="fitted" ${isFitted ? 'checked' : ''}>
+            ${isFitted ? 'Fitted' : 'Not yet'}
+          </label>
+        </td>
+        <td>
+          <input type="date" class="followup-input ${overdue ? 'overdue' : ''}" data-id="${r.id}" data-field="next_followup" value="${escapeHtml(r.next_followup || '')}">
+          ${overdue ? '<span class="followup-badge">OVERDUE</span>' : ''}
+        </td>
+        <td>
+          <div class="actions-cell">
+            <a class="icon-btn" href="tel:${escapeHtml(r.phone)}" title="Call">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </a>
+            <a class="icon-btn" href="https://wa.me/${escapeHtml((r.phone||'').replace(/\\D/g,''))}" target="_blank" title="WhatsApp">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.5-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.7-1.7-.9-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.4z"/><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.5A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.2-.4-4.5-1.3l-.3-.2-3.2 1 1-3.1-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>
+            </a>
+            <button class="icon-btn danger" data-id="${r.id}" data-name="${escapeHtml(r.name)}" title="Delete" type="button" data-action="delete">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0-1 14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2L4 6h16z"/><path d="M10 11v6M14 11v6"/></svg>
+            </button>
+          </div>
+        </td>
+      </tr>
+    `;
+    }).join('');
+
+    tbody.querySelectorAll('.status-select').forEach(sel=>{
+      sel.addEventListener('change', onStatusChange);
+    });
+    tbody.querySelectorAll('input[data-field="fitted"]').forEach(chk=>{
+      chk.addEventListener('change', onFittedChange);
+    });
+    tbody.querySelectorAll('input[data-field="next_followup"]').forEach(inp=>{
+      inp.addEventListener('change', onFollowupChange);
+    });
+    tbody.querySelectorAll('[data-action="delete"]').forEach(btn=>{
+      btn.addEventListener('click', onDeleteClick);
+    });
+  }
+
+  function escapeHtml(str){
+    if(str === undefined || str === null) return '';
+    return String(str)
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+      .replace(/"/g,'&quot;');
+  }
+
+  async function patchEnquiry(id, payload){
+    const res = await fetch(`/api/enquiries/${id}`, {
+      method: 'PATCH',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(payload)
+    });
+    if(!res.ok) throw new Error('Update failed');
+    return res.json();
+  }
+
+  async function onStatusChange(e){
+    const select = e.target;
+    const id = select.dataset.id;
+    const newStatus = select.value;
+    try{
+      await patchEnquiry(id, {status: newStatus});
+      const row = allRows.find(r => String(r.id) === String(id));
+      if(row) row.status = newStatus;
+      renderStats();
+      render();
+      showToast(`Enquiry #${id} marked ${newStatus}`);
+    }catch(err){
+      showToast('Could not update status — try again.');
+    }
+  }
+
+  async function onFittedChange(e){
+    const checkbox = e.target;
+    const id = checkbox.dataset.id;
+    const fitted = checkbox.checked;
+    try{
+      await patchEnquiry(id, {fitted});
+      const row = allRows.find(r => String(r.id) === String(id));
+      if(row) row.fitted = fitted ? 'Yes' : 'No';
+      renderStats();
+      render();
+      showToast(`Enquiry #${id} marked ${fitted ? 'fitted' : 'not fitted'}`);
+    }catch(err){
+      checkbox.checked = !fitted;
+      showToast('Could not update — try again.');
+    }
+  }
+
+  async function onFollowupChange(e){
+    const input = e.target;
+    const id = input.dataset.id;
+    const value = input.value;
+    try{
+      await patchEnquiry(id, {next_followup: value});
+      const row = allRows.find(r => String(r.id) === String(id));
+      if(row) row.next_followup = value;
+      renderStats();
+      render();
+      showToast(value ? `Follow-up set for #${id}` : `Follow-up cleared for #${id}`);
+    }catch(err){
+      showToast('Could not update follow-up date — try again.');
+    }
+  }
+
+  // ---------------- delete, with confirm modal ----------------
+  let pendingDeleteId = null;
+
+  function onDeleteClick(e){
+    const btn = e.currentTarget;
+    pendingDeleteId = btn.dataset.id;
+    const name = btn.dataset.name || 'this enquiry';
+    document.getElementById('confirm-message').textContent =
+      `This removes ${name}'s enquiry (#${pendingDeleteId}) permanently from enquiries.csv. This can't be undone.`;
+    document.getElementById('confirm-overlay').classList.add('show');
+  }
+
+  function closeConfirm(){
+    document.getElementById('confirm-overlay').classList.remove('show');
+    pendingDeleteId = null;
+  }
+
+  async function confirmDelete(){
+    const id = pendingDeleteId;
+    if(!id) return;
+    closeConfirm();
+    try{
+      const res = await fetch(`/api/enquiries/${id}`, {method: 'DELETE'});
+      if(!res.ok) throw new Error('Delete failed');
+      allRows = allRows.filter(r => String(r.id) !== String(id));
+      renderStats();
+      render();
+      showToast(`Enquiry #${id} deleted.`);
+    }catch(err){
+      showToast('Could not delete — try again.');
+    }
+  }
+
+  document.getElementById('confirm-cancel').addEventListener('click', closeConfirm);
+  document.getElementById('confirm-delete').addEventListener('click', confirmDelete);
+  document.getElementById('confirm-overlay').addEventListener('click', (e)=>{
+    if(e.target.id === 'confirm-overlay') closeConfirm();
+  });
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'Escape') closeConfirm();
+  });
+
+  // ---------------- Google Drive status ----------------
+  async function fetchDriveStatus(){
+    const pill = document.getElementById('drive-pill');
+    const text = document.getElementById('drive-pill-text');
+    const syncBtn = document.getElementById('drive-sync-btn');
+    try{
+      const res = await fetch('/api/drive/status');
+      const data = await res.json();
+      if(data.connected){
+        pill.className = 'drive-pill connected';
+        const when = data.last_synced ? fmtDate(data.last_synced) : 'never yet';
+        text.textContent = `Drive: synced · ${when}`;
+        syncBtn.style.display = 'inline';
+      }else if(data.configured){
+        pill.className = 'drive-pill error';
+        text.textContent = 'Drive: connection error';
+        syncBtn.style.display = 'inline';
+      }else{
+        pill.className = 'drive-pill';
+        text.textContent = 'Drive backup: not set up';
+        syncBtn.style.display = 'none';
+      }
+    }catch(err){
+      pill.className = 'drive-pill error';
+      text.textContent = 'Drive: status unavailable';
+      syncBtn.style.display = 'none';
+    }
+  }
+
+  async function syncDriveNow(){
+    const syncBtn = document.getElementById('drive-sync-btn');
+    syncBtn.disabled = true;
+    syncBtn.textContent = 'Syncing…';
+    try{
+      const res = await fetch('/api/drive/sync', {method: 'POST'});
+      const data = await res.json();
+      if(!res.ok) throw new Error(data.detail || 'Sync failed');
+      showToast('Synced enquiries.csv to Google Drive.');
+    }catch(err){
+      showToast('Drive sync failed: ' + err.message);
+    }
+    syncBtn.disabled = false;
+    syncBtn.textContent = 'Sync now';
+    fetchDriveStatus();
+  }
+
+  document.getElementById('drive-sync-btn').addEventListener('click', syncDriveNow);
+
+  document.getElementById('search').addEventListener('input', render);
+  document.getElementById('filter-service').addEventListener('change', render);
+  document.getElementById('filter-status').addEventListener('change', render);
+  document.getElementById('refresh-btn').addEventListener('click', () => {
+    fetchEnquiries();
+    fetchDriveStatus();
+  });
+
+  fetchEnquiries();
+  fetchDriveStatus();
+</script>
+
+</body>
+</html>
