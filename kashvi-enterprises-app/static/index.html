@@ -1,0 +1,1340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kashvi Enterprises — Electrical, Water &amp; Home Utility Solutions | Bangalore</title>
+<meta name="description" content="Kashvi Enterprises — smart electrical, water supply, RO purifier and domestic plumbing solutions for homes in Bangalore. One partner, endless solutions.">
+<link rel="icon" href="images/mark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Work+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0B1852;
+    --navy-dark:#060E36;
+    --navy-soft:#141F5C;
+    --gold:#F2A91F;
+    --gold-dark:#C98607;
+    --gold-light:#FDE3AE;
+    --bg:#F7F7FB;
+    --panel:#FFFFFF;
+    --ink:#141A38;
+    --muted:#585F82;
+    --line:#E4E5F1;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Work Sans', sans-serif;
+    color:var(--ink);
+    background:var(--bg);
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Space Grotesk', sans-serif;
+    letter-spacing:-0.01em;
+    margin:0;
+  }
+  .mono{
+    font-family:'JetBrains Mono', monospace;
+    letter-spacing:0.02em;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{
+    width:100%;
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--gold-dark);
+    font-weight:500;
+  }
+  .eyebrow::before{
+    content:"";
+    width:16px;
+    height:2px;
+    background:var(--gold-dark);
+    display:inline-block;
+  }
+  section.on-dark .eyebrow{color:var(--gold);}
+  section.on-dark .eyebrow::before{background:var(--gold);}
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(11,24,82,0.96);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid rgba(255,255,255,0.08);
+  }
+  .nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:14px 24px;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .brand img{height:34px;width:auto;}
+  .brand-text{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:700;
+    font-size:19px;
+    color:#fff;
+    line-height:1.05;
+  }
+  .brand-text span{
+    display:block;
+    font-family:'JetBrains Mono', monospace;
+    font-weight:400;
+    font-size:9.5px;
+    letter-spacing:0.22em;
+    color:var(--gold);
+    margin-top:2px;
+  }
+  nav.links{
+    display:flex;
+    align-items:center;
+    gap:32px;
+  }
+  nav.links a{
+    color:#D9DCF2;
+    font-size:14.5px;
+    font-weight:500;
+    transition:color .15s ease;
+  }
+  nav.links a:hover{color:#fff;}
+  .call-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:var(--gold);
+    color:var(--navy-dark);
+    font-weight:600;
+    font-size:14px;
+    padding:10px 18px;
+    border-radius:999px;
+    white-space:nowrap;
+    transition:background .15s ease, transform .15s ease;
+  }
+  .call-btn:hover{background:#fff;transform:translateY(-1px);}
+  .menu-toggle{
+    display:none;
+    flex-direction:column;
+    gap:5px;
+    background:none;
+    border:none;
+    cursor:pointer;
+    padding:6px;
+  }
+  .menu-toggle span{width:22px;height:2px;background:#fff;display:block;}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;
+    background:linear-gradient(180deg, var(--navy) 0%, var(--navy-dark) 100%);
+    color:#fff;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.05fr 0.95fr;
+    align-items:center;
+    gap:40px;
+    padding:76px 24px 120px;
+    max-width:1180px;
+    margin:0 auto;
+    position:relative;
+    z-index:2;
+  }
+  .hero h1{
+    font-size:clamp(34px, 4.6vw, 56px);
+    font-weight:700;
+    line-height:1.05;
+    margin:18px 0 20px;
+  }
+  .hero h1 .accent{color:var(--gold);}
+  .hero p.lead{
+    font-size:17px;
+    line-height:1.6;
+    color:#C5C9E6;
+    max-width:480px;
+    margin-bottom:32px;
+  }
+  .hero-ctas{
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+  }
+  .btn-primary{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    background:var(--gold);
+    color:var(--navy-dark);
+    font-weight:600;
+    font-size:15px;
+    padding:14px 26px;
+    border-radius:999px;
+    transition:transform .15s ease, box-shadow .15s ease;
+    box-shadow:0 10px 24px rgba(242,169,31,0.18);
+  }
+  .btn-primary:hover{transform:translateY(-2px);}
+  .btn-ghost{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    border:1px solid rgba(255,255,255,0.28);
+    color:#fff;
+    font-weight:600;
+    font-size:15px;
+    padding:14px 26px;
+    border-radius:999px;
+    transition:border-color .15s ease, background .15s ease;
+  }
+  .btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,0.06);}
+
+  .hero-photo{
+    position:relative;
+  }
+  .hero-photo-frame{
+    position:relative;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 30px 70px rgba(0,0,0,0.45);
+    border:1px solid rgba(255,255,255,0.08);
+  }
+  .hero-photo-frame img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    aspect-ratio:4/3.1;
+  }
+  .hero-bolt-badge{
+    position:absolute;
+    bottom:-26px;
+    left:-26px;
+    background:var(--navy);
+    border:1px solid rgba(255,255,255,0.12);
+    border-radius:16px;
+    padding:14px 18px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    box-shadow:0 18px 40px rgba(0,0,0,0.4);
+  }
+  .hero-bolt-badge img{height:30px;width:auto;}
+  .hero-bolt-badge .t1{font-size:12px;color:#B9BEE0;font-family:'JetBrains Mono',monospace;letter-spacing:0.04em;}
+  .hero-bolt-badge .t2{font-size:14px;font-weight:600;color:#fff;}
+
+  .hero-divider{
+    position:absolute;
+    left:0; right:0; bottom:-1px;
+    line-height:0;
+    z-index:1;
+  }
+  .hero-divider svg{width:100%;height:64px;display:block;}
+
+  /* faint circuit texture in hero */
+  .circuit-bg{
+    position:absolute;
+    inset:0;
+    opacity:0.10;
+    background-image:
+      linear-gradient(rgba(255,255,255,.5) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.5) 1px, transparent 1px);
+    background-size:46px 46px;
+    mask-image:radial-gradient(ellipse at 20% 20%, black, transparent 70%);
+    z-index:1;
+  }
+
+  /* ---------- Ticker strip ---------- */
+  .ticker{
+    background:var(--gold);
+    color:var(--navy-dark);
+    overflow:hidden;
+    white-space:nowrap;
+    position:relative;
+  }
+  .ticker-track{
+    display:inline-flex;
+    align-items:center;
+    animation:scroll 26s linear infinite;
+    padding:11px 0;
+  }
+  .ticker-track span{
+    font-family:'JetBrains Mono', monospace;
+    font-size:13px;
+    font-weight:500;
+    letter-spacing:0.05em;
+    padding:0 22px;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+  }
+  .ticker-track span::after{content:"⚡";}
+  @keyframes scroll{
+    0%{transform:translateX(0);}
+    100%{transform:translateX(-50%);}
+  }
+
+  /* ---------- Section shared ---------- */
+  section{padding:96px 0;}
+  .section-head{
+    max-width:620px;
+    margin-bottom:52px;
+  }
+  .section-head h2{
+    font-size:clamp(28px,3.4vw,40px);
+    font-weight:700;
+    margin-top:14px;
+    line-height:1.1;
+  }
+  .section-head p{
+    color:var(--muted);
+    font-size:16px;
+    line-height:1.6;
+    margin-top:14px;
+  }
+  section.on-dark{
+    background:var(--navy-dark);
+    color:#fff;
+  }
+  section.on-dark .section-head p{color:#B9BEE0;}
+
+  /* ---------- Services ---------- */
+  .services-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:22px;
+  }
+  .service-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    overflow:hidden;
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .service-card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 22px 40px rgba(11,24,82,0.10);
+  }
+  .service-photo{
+    position:relative;
+    height:168px;
+    overflow:hidden;
+  }
+  .service-photo img{
+    width:100%;height:100%;object-fit:cover;
+    transition:transform .35s ease;
+  }
+  .service-card:hover .service-photo img{transform:scale(1.06);}
+  .service-tag{
+    position:absolute;
+    top:12px;left:12px;
+    background:var(--navy);
+    color:var(--gold);
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.08em;
+    padding:5px 10px;
+    border-radius:999px;
+  }
+  .service-body{padding:20px 20px 24px;}
+  .service-body h3{
+    font-size:19px;
+    font-weight:600;
+    margin-bottom:12px;
+  }
+  .service-body ul{
+    list-style:none;
+    margin:0;padding:0;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+  .service-body li{
+    font-size:13.8px;
+    color:var(--muted);
+    display:flex;
+    align-items:flex-start;
+    gap:8px;
+    line-height:1.4;
+  }
+  .service-body li::before{
+    content:"";
+    width:7px;height:7px;
+    margin-top:5px;
+    flex:none;
+    background:var(--gold);
+    clip-path:polygon(50% 0%, 90% 35%, 65% 40%, 100% 100%, 10% 55%, 35% 50%);
+  }
+
+  /* ---------- Bolt divider signature ---------- */
+  .bolt-divider{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:18px;
+    padding:6px 0 0;
+  }
+  .bolt-divider .line{flex:1;height:1px;background:var(--line);max-width:220px;}
+  section.on-dark .bolt-divider .line{background:rgba(255,255,255,0.12);}
+  .bolt-divider svg{width:22px;height:22px;}
+
+  /* ---------- Why / features ---------- */
+  .why-wrap{
+    display:grid;
+    grid-template-columns:0.9fr 1.1fr;
+    gap:60px;
+    align-items:start;
+  }
+  .why-list{
+    display:flex;
+    flex-direction:column;
+    gap:0;
+  }
+  .why-item{
+    display:flex;
+    gap:18px;
+    padding:26px 0;
+    border-top:1px solid rgba(255,255,255,0.10);
+  }
+  .why-item:last-child{border-bottom:1px solid rgba(255,255,255,0.10);}
+  .why-num{
+    font-family:'JetBrains Mono',monospace;
+    color:var(--gold);
+    font-size:13px;
+    padding-top:3px;
+  }
+  .why-item h4{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:17px;
+    font-weight:600;
+    margin-bottom:8px;
+    color:#fff;
+  }
+  .why-item p{
+    font-size:14.5px;
+    color:#B9BEE0;
+    line-height:1.6;
+    margin:0;
+    max-width:440px;
+  }
+  .why-panel{
+    background:var(--navy-soft);
+    border:1px solid rgba(255,255,255,0.10);
+    border-radius:var(--radius);
+    padding:32px;
+  }
+  .why-panel .cat{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    color:var(--gold);
+    letter-spacing:0.08em;
+    margin-bottom:6px;
+  }
+  .why-panel h3{
+    color:#fff;
+    font-size:22px;
+    margin-bottom:18px;
+  }
+  .service-pill-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+  }
+  .service-pill{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    background:rgba(255,255,255,0.04);
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:10px;
+    padding:12px 14px;
+    font-size:13.5px;
+    color:#DCE0F5;
+  }
+  .service-pill svg{width:16px;height:16px;flex:none;color:var(--gold);}
+
+  /* ---------- Process ---------- */
+  .process-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:0;
+    position:relative;
+  }
+  .process-step{
+    padding:0 20px 0 0;
+    position:relative;
+  }
+  .process-step .pnum{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;
+    font-size:34px;
+    color:var(--gold);
+    -webkit-text-stroke:1px var(--gold);
+    margin-bottom:16px;
+  }
+  .process-step h4{
+    font-size:16.5px;
+    font-weight:600;
+    margin-bottom:8px;
+  }
+  .process-step p{
+    font-size:14px;
+    color:var(--muted);
+    line-height:1.55;
+  }
+  .process-connector{
+    position:absolute;
+    top:20px;
+    right:-10px;
+    width:20px;
+    height:2px;
+    background:var(--line);
+  }
+
+  /* ---------- Contact ---------- */
+  .contact-grid{
+    display:grid;
+    grid-template-columns:1.05fr 0.95fr;
+    gap:32px;
+    align-items:start;
+  }
+  .contact-side{
+    display:flex;
+    flex-direction:column;
+    gap:24px;
+  }
+  .contact-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:36px;
+  }
+  .contact-row{
+    display:flex;
+    gap:16px;
+    align-items:flex-start;
+    padding:18px 0;
+    border-top:1px solid var(--line);
+  }
+  .contact-row:first-of-type{border-top:none;padding-top:0;}
+  .contact-icon{
+    width:40px;height:40px;
+    border-radius:10px;
+    background:var(--navy);
+    color:var(--gold);
+    display:flex;align-items:center;justify-content:center;
+    flex:none;
+  }
+  .contact-icon svg{width:19px;height:19px;}
+  .contact-row .label{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11.5px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--gold-dark);
+    margin-bottom:5px;
+  }
+  .contact-row .value{
+    font-size:16px;
+    font-weight:500;
+  }
+  .contact-row .value.small{font-size:14.5px;font-weight:400;color:var(--muted);line-height:1.5;}
+  .map-frame{
+    border-radius:var(--radius);
+    overflow:hidden;
+    border:1px solid var(--line);
+    height:220px;
+  }
+  .map-frame iframe{width:100%;height:100%;border:0;filter:grayscale(0.15);}
+
+  /* ---------- Enquiry form ---------- */
+  .enquiry-card{
+    background:var(--navy);
+    border-radius:var(--radius);
+    padding:36px;
+    color:#fff;
+    position:relative;
+    overflow:hidden;
+  }
+  .enquiry-card::after{
+    content:"";
+    position:absolute;
+    top:-60px;right:-60px;
+    width:220px;height:220px;
+    background:radial-gradient(circle, rgba(242,169,31,0.16), transparent 70%);
+    pointer-events:none;
+  }
+  .enquiry-card .cat{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    color:var(--gold);
+    letter-spacing:0.08em;
+    margin-bottom:8px;
+  }
+  .enquiry-card h3{
+    font-size:23px;
+    margin-bottom:6px;
+  }
+  .enquiry-card .sub{
+    font-size:14px;
+    color:#B9BEE0;
+    margin-bottom:28px;
+    line-height:1.5;
+  }
+  .form-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+    margin-bottom:16px;
+  }
+  .field{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+    margin-bottom:16px;
+    position:relative;
+    z-index:1;
+  }
+  .form-row .field{margin-bottom:0;}
+  .field label{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:#9AA1CB;
+  }
+  .field input,
+  .field select,
+  .field textarea{
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(255,255,255,0.14);
+    border-radius:10px;
+    padding:12px 14px;
+    font-family:'Work Sans', sans-serif;
+    font-size:14.5px;
+    color:#fff;
+    outline:none;
+    transition:border-color .15s ease, background .15s ease;
+    width:100%;
+  }
+  .field select{
+    appearance:none;
+    -webkit-appearance:none;
+    background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23F2A91F" stroke-width="2.4"><path d="M6 9l6 6 6-6"/></svg>');
+    background-repeat:no-repeat;
+    background-position:right 14px center;
+    background-size:15px;
+    padding-right:38px;
+  }
+  .field select option{background:#0B1852;color:#fff;}
+  .field input::placeholder,
+  .field textarea::placeholder{color:#767DAA;}
+  .field input:focus,
+  .field select:focus,
+  .field textarea:focus{
+    border-color:var(--gold);
+    background:rgba(255,255,255,0.09);
+  }
+  .field textarea{resize:vertical;min-height:88px;font-family:inherit;}
+  .form-note{
+    font-size:12px;
+    color:#8991BC;
+    margin-top:4px;
+    line-height:1.5;
+    position:relative;
+    z-index:1;
+  }
+  .form-submit{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    width:100%;
+    background:var(--gold);
+    color:var(--navy-dark);
+    font-weight:600;
+    font-size:15px;
+    padding:14px 22px;
+    border:none;
+    border-radius:999px;
+    cursor:pointer;
+    transition:background .15s ease, transform .15s ease;
+    position:relative;
+    z-index:1;
+    font-family:'Work Sans', sans-serif;
+  }
+  .form-submit:hover{background:#fff;transform:translateY(-1px);}
+  .form-submit:disabled{opacity:0.7;cursor:not-allowed;transform:none;}
+  .form-status{
+    margin-top:14px;
+    font-size:13.5px;
+    color:var(--gold);
+    display:none;
+    position:relative;
+    z-index:1;
+  }
+  .form-status.show{display:block;}
+  .field.error input,
+  .field.error select,
+  .field.error textarea{border-color:#F26565;}
+  .field .err-msg{
+    font-size:11.5px;
+    color:#F29494;
+    display:none;
+  }
+  .field.error .err-msg{display:block;}
+
+  /* ---------- CTA banner ---------- */
+  .cta-banner{
+    background:var(--gold);
+    color:var(--navy-dark);
+    border-radius:20px;
+    padding:52px 48px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:24px;
+    flex-wrap:wrap;
+    position:relative;
+    overflow:hidden;
+  }
+  .cta-banner h3{
+    font-size:clamp(22px,3vw,30px);
+    max-width:480px;
+    line-height:1.15;
+  }
+  .cta-banner .btn-primary{
+    background:var(--navy);
+    color:#fff;
+    box-shadow:none;
+  }
+  .cta-banner .btn-primary:hover{background:var(--navy-dark);}
+
+  /* ---------- Footer ---------- */
+  footer{
+    background:var(--navy-dark);
+    color:#B9BEE0;
+    padding:56px 0 26px;
+  }
+  .footer-top{
+    display:flex;
+    justify-content:space-between;
+    gap:40px;
+    flex-wrap:wrap;
+    padding-bottom:36px;
+    border-bottom:1px solid rgba(255,255,255,0.08);
+    margin-bottom:24px;
+  }
+  .footer-brand .brand-text{color:#fff;}
+  .footer-brand p{
+    font-size:14px;
+    max-width:280px;
+    line-height:1.6;
+    margin-top:14px;
+    color:#8991BC;
+  }
+  .footer-cols{
+    display:flex;
+    gap:64px;
+    flex-wrap:wrap;
+  }
+  .footer-col h5{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:16px;
+  }
+  .footer-col a, .footer-col span{
+    display:block;
+    font-size:14px;
+    color:#B9BEE0;
+    margin-bottom:10px;
+  }
+  .footer-col a:hover{color:#fff;}
+  .footer-bottom{
+    display:flex;
+    justify-content:space-between;
+    font-size:12.5px;
+    color:#727AA6;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+
+  /* ---------- Grid/flex overflow safety ---------- */
+  /* Prevents text-heavy children from forcing grid tracks wider than
+     their container at narrow viewports (CSS Grid's default track
+     sizing keeps the max-content width unless children can shrink). */
+  .hero-grid > *,
+  .services-grid > *,
+  .why-wrap > *,
+  .service-pill-grid > *,
+  .process-grid > *,
+  .contact-grid > *,
+  .form-row > *{
+    min-width:0;
+  }
+  .why-item > div{min-width:0;}
+
+  /* ---------- Responsive base ---------- */
+  html{overflow-x:hidden;}
+  body{overflow-x:hidden;}
+  img{max-width:100%;height:auto;}
+  .reveal{
+    opacity:0;
+    transform:translateY(18px);
+    transition:opacity .6s ease, transform .6s ease;
+  }
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 980px){
+    .hero-grid{grid-template-columns:1fr;padding-top:52px;}
+    .hero-photo{order:-1;}
+    .hero-bolt-badge{left:14px;bottom:-22px;}
+    .services-grid{grid-template-columns:1fr 1fr;}
+    .why-wrap{grid-template-columns:1fr;}
+    .process-grid{grid-template-columns:1fr 1fr;row-gap:36px;}
+    .process-connector{display:none;}
+    .contact-grid{grid-template-columns:1fr;}
+    .form-row{grid-template-columns:1fr;gap:16px;}
+    nav.links{display:none;}
+    .menu-toggle{display:flex;}
+  }
+  @media (max-width: 620px){
+    .services-grid{grid-template-columns:1fr;}
+    .process-grid{grid-template-columns:1fr;}
+    .cta-banner{flex-direction:column;align-items:flex-start;}
+    .call-btn span.txt{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav wrap">
+    <a href="#top" class="brand">
+      <img src="images/mark.png" alt="Kashvi Enterprises mark">
+      <div class="brand-text">KASHVI<span>ENTERPRISES</span></div>
+    </a>
+    <nav class="links">
+      <a href="#services">Services</a>
+      <a href="#why">Why Us</a>
+      <a href="#process">How It Works</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="call-btn" href="tel:+919606977966">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      <span class="txt">+91 96069 77966</span>
+    </a>
+    <button class="menu-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="circuit-bg"></div>
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow">Electrical · Water · RO · Domestic — Bangalore</span>
+        <h1>Smart solutions<br>for <span class="accent">every home.</span></h1>
+        <p class="lead">Kashvi Enterprises is your one partner for wiring, water supply, RO purification and domestic upkeep — handled by hands that know every panel, pipe and purifier in the house.</p>
+        <div class="hero-ctas">
+          <a class="btn-primary" href="tel:+919606977966">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            Call for Service
+          </a>
+          <a class="btn-ghost" href="#services">
+            View Services
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="hero-photo">
+        <div class="hero-photo-frame">
+          <img src="images/hero-house.png" alt="A home fitted out with Kashvi Enterprises electrical and water systems">
+        </div>
+        <div class="hero-bolt-badge">
+          <img src="images/mark.png" alt="">
+          <div>
+            <div class="t1">SERVICE AREA</div>
+            <div class="t2">Kammasandra &amp; Bangalore</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-divider">
+      <svg viewBox="0 0 1440 70" preserveAspectRatio="none"><path d="M0,70 L0,30 L600,30 L660,0 L700,45 L760,45 L820,10 L880,55 L1440,55 L1440,70 Z" fill="#F7F7FB"/></svg>
+    </div>
+  </section>
+
+  <!-- TICKER -->
+  <div class="ticker">
+    <div class="ticker-track">
+      <span>WIRING &amp; LIGHTING</span>
+      <span>EARTHING &amp; PROTECTION</span>
+      <span>PANEL INSTALLATION</span>
+      <span>RENTAL RO SYSTEMS</span>
+      <span>WATER PURIFICATION</span>
+      <span>PLUMBING &amp; MAINTENANCE</span>
+      <span>HOME UTILITY SOLUTIONS</span>
+      <span>WIRING &amp; LIGHTING</span>
+      <span>EARTHING &amp; PROTECTION</span>
+      <span>PANEL INSTALLATION</span>
+      <span>RENTAL RO SYSTEMS</span>
+      <span>WATER PURIFICATION</span>
+      <span>PLUMBING &amp; MAINTENANCE</span>
+      <span>HOME UTILITY SOLUTIONS</span>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Our Services</span>
+        <h2>Four systems, one call.</h2>
+        <p>Every home runs on the same four things — power, water in, water clean, and water flowing right. We handle all of them, so you're not juggling four different contacts.</p>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card reveal">
+          <div class="service-photo">
+            <span class="service-tag mono">01 / ELECTRICAL</span>
+            <img src="images/electrical.jpg" alt="Electrician testing a home distribution panel with a multimeter">
+          </div>
+          <div class="service-body">
+            <h3>Electrical</h3>
+            <ul>
+              <li>Wiring &amp; lighting</li>
+              <li>Earthing &amp; protection</li>
+              <li>Panel installation</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="service-photo">
+            <span class="service-tag mono">02 / WATER SUPPLY</span>
+            <img src="images/water-supply.png" alt="Rooftop overhead water tank with supply piping and filters">
+          </div>
+          <div class="service-body">
+            <h3>Water Supply</h3>
+            <ul>
+              <li>Rental RO systems</li>
+              <li>Water purification solutions</li>
+              <li>Overhead tank &amp; line setup</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="service-photo">
+            <span class="service-tag mono">03 / RO PURIFIERS</span>
+            <img src="images/ro-purifiers.png" alt="Multi-stage RO purifier unit installed with filter cartridges">
+          </div>
+          <div class="service-body">
+            <h3>RO Purifiers</h3>
+            <ul>
+              <li>Multi-stage RO installation</li>
+              <li>Filter servicing &amp; replacement</li>
+              <li>Purity checks &amp; upkeep</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="service-photo">
+            <span class="service-tag mono">04 / DOMESTIC</span>
+            <img src="images/domestic.png" alt="Domestic water heater plumbed in with dual filter cartridges">
+          </div>
+          <div class="service-body">
+            <h3>Domestic</h3>
+            <ul>
+              <li>Plumbing &amp; maintenance</li>
+              <li>Home utility solutions</li>
+              <li>Water heater fitting</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="bolt-divider reveal">
+        <span class="line"></span>
+        <svg viewBox="0 0 24 24"><polygon points="13,1 4,14 11,14 8,23 20,9 12,9" fill="#F2A91F"/></svg>
+        <span class="line"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY -->
+  <section id="why" class="on-dark">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Why Kashvi</span>
+        <h2>One partner, so nothing falls between the cracks.</h2>
+        <p>Electrical and plumbing problems don't stay in their lane — a leak trips a circuit, a bad earth wears down a purifier. Handling all four under one roof means the whole system gets checked, not just the symptom.</p>
+      </div>
+
+      <div class="why-wrap">
+        <div class="why-list">
+          <div class="why-item reveal">
+            <span class="why-num mono">01</span>
+            <div>
+              <h4>Whole-home view</h4>
+              <p>Every job is looked at against the rest of your electrical and water setup, not fixed in isolation.</p>
+            </div>
+          </div>
+          <div class="why-item reveal">
+            <span class="why-num mono">02</span>
+            <div>
+              <h4>Local &amp; reachable</h4>
+              <p>Based in Kammasandra, Bangalore — close enough to respond quickly and know the area's water and power quirks.</p>
+            </div>
+          </div>
+          <div class="why-item reveal">
+            <span class="why-num mono">03</span>
+            <div>
+              <h4>Built to last</h4>
+              <p>Panels, earthing and purifier installs are done to hold up — not just pass inspection on day one.</p>
+            </div>
+          </div>
+          <div class="why-item reveal">
+            <span class="why-num mono">04</span>
+            <div>
+              <h4>Rental &amp; owned options</h4>
+              <p>Rental RO systems for flexibility, or full installs if you're settling in for the long run.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="why-panel reveal">
+          <div class="cat mono">SERVICE MENU</div>
+          <h3>Everything, at a glance</h3>
+          <div class="service-pill-grid">
+            <div class="service-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>Wiring &amp; lighting</div>
+            <div class="service-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg>Earthing &amp; protection</div>
+            <div class="service-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h2"/></svg>Panel installation</div>
+            <div class="service-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg>Rental RO systems</div>
+            <div class="service-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8"/></svg>Water purification</div>
+            <div class="service-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12a8 8 0 0 1 8-8M20 12a8 8 0 0 1-8 8M4 12l3-3M4 12l3 3M20 12l-3-3M20 12l-3 3"/></svg>Plumbing &amp; maintenance</div>
+            <div class="service-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l9-9 9 9M5 10v10h14V10"/></svg>Home utility solutions</div>
+            <div class="service-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M10 6h4"/></svg>RO purifier install</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="process">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">How It Works</span>
+        <h2>From call to fixed.</h2>
+      </div>
+      <div class="process-grid">
+        <div class="process-step reveal">
+          <div class="pnum">01</div>
+          <h4>Call or message</h4>
+          <p>Tell us what's wrong — a fault, a fitting, or a full new setup.</p>
+          <div class="process-connector"></div>
+        </div>
+        <div class="process-step reveal">
+          <div class="pnum">02</div>
+          <h4>On-site check</h4>
+          <p>We inspect the panel, pipe or purifier in question, and the systems around it.</p>
+          <div class="process-connector"></div>
+        </div>
+        <div class="process-step reveal">
+          <div class="pnum">03</div>
+          <h4>Clear plan</h4>
+          <p>You get a straight explanation of the fix and what it involves before work starts.</p>
+          <div class="process-connector"></div>
+        </div>
+        <div class="process-step reveal">
+          <div class="pnum">04</div>
+          <h4>Work &amp; test</h4>
+          <p>We complete the job and test it under real load before we call it done.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section style="padding-top:0;">
+    <div class="wrap">
+      <div class="cta-banner reveal">
+        <h3>Wiring acting up, or the RO running slow? Let's sort it.</h3>
+        <a class="btn-primary" href="tel:+919606977966">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          +91 96069 77966
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Contact</span>
+        <h2>Get in touch.</h2>
+        <p>Based in Kammasandra, serving homes across Bangalore. Reach out for a quote or to schedule a visit.</p>
+      </div>
+
+      <div class="contact-grid">
+        <form class="enquiry-card reveal" id="enquiry-form" novalidate>
+          <div class="cat mono">ENQUIRY FORM</div>
+          <h3>Tell us what you need.</h3>
+          <p class="sub">Fill this in and it'll open a WhatsApp message to us with your details — takes 20 seconds, no back-and-forth.</p>
+
+          <div class="form-row">
+            <div class="field" data-field="name">
+              <label for="f-name">Full Name</label>
+              <input type="text" id="f-name" placeholder="Your name" autocomplete="name">
+              <span class="err-msg">Please enter your name.</span>
+            </div>
+            <div class="field" data-field="phone">
+              <label for="f-phone">Phone Number</label>
+              <input type="tel" id="f-phone" placeholder="10-digit mobile number" autocomplete="tel">
+              <span class="err-msg">Please enter a valid phone number.</span>
+            </div>
+          </div>
+
+          <div class="field" data-field="service">
+            <label for="f-service">Service Needed</label>
+            <select id="f-service">
+              <option value="Electrical">Electrical — wiring, earthing, panel installation</option>
+              <option value="Water Supply">Water Supply — rental RO, purification, tank setup</option>
+              <option value="RO Purifiers">RO Purifiers — installation, filter service</option>
+              <option value="Domestic">Domestic — plumbing, maintenance, utility work</option>
+              <option value="Not sure">Not sure / general enquiry</option>
+            </select>
+          </div>
+
+          <div class="field" data-field="message">
+            <label for="f-message">Details</label>
+            <textarea id="f-message" placeholder="Briefly describe the issue or what you need installed..."></textarea>
+          </div>
+
+          <button type="submit" class="form-submit">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.5-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.7-1.7-.9-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.4z"/><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.5A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.2-.4-4.5-1.3l-.3-.2-3.2 1 1-3.1-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>
+            <span class="submit-label">Send Enquiry via WhatsApp</span>
+          </button>
+          <div class="form-status" id="form-status"></div>
+          <p class="form-note">Prefer to talk? Call us directly at <a href="tel:+919606977966" style="color:#DCE0F5;">+91 96069 77966</a>.</p>
+        </form>
+
+        <div class="contact-side">
+          <div class="contact-card reveal">
+            <div class="contact-row">
+              <div class="contact-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              </div>
+              <div>
+                <div class="label mono">Phone</div>
+                <a class="value" href="tel:+919606977966">+91 96069 77966</a>
+              </div>
+            </div>
+            <div class="contact-row">
+              <div class="contact-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div>
+                <div class="label mono">Address</div>
+                <div class="value small">16 B, Dhruvadhhamma Layout,<br>Kammasandra, Bangalore – 560100</div>
+              </div>
+            </div>
+            <div class="contact-row">
+              <div class="contact-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+              </div>
+              <div>
+                <div class="label mono">Hours</div>
+                <div class="value small">Call anytime to schedule — we work around your home's timing.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="map-frame reveal">
+            <iframe
+              src="https://maps.google.com/maps?q=16%20B%2C%20Dhruvadhhamma%20Layout%2C%20Kammasandra%2C%20Bangalore%20560100&output=embed"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Kashvi Enterprises location map">
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="brand">
+          <img src="images/mark.png" alt="Kashvi Enterprises mark" style="height:30px;">
+          <div class="brand-text">KASHVI<span>ENTERPRISES</span></div>
+        </div>
+        <p>Smart solutions for every home — electrical, water supply, RO purifiers and domestic care, all from one partner in Bangalore.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h5>Services</h5>
+          <a href="#services">Electrical</a>
+          <a href="#services">Water Supply</a>
+          <a href="#services">RO Purifiers</a>
+          <a href="#services">Domestic</a>
+        </div>
+        <div class="footer-col">
+          <h5>Company</h5>
+          <a href="#why">Why Us</a>
+          <a href="#process">How It Works</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h5>Reach Us</h5>
+          <a href="tel:+919606977966">+91 96069 77966</a>
+          <span>Kammasandra, Bangalore</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> Kashvi Enterprises. All rights reserved.</span>
+      <span>One partner. Endless solutions.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // mobile menu toggle -> simple: show links as dropdown
+  const toggle = document.querySelector('.menu-toggle');
+  const links = document.querySelector('nav.links');
+  toggle.addEventListener('click', () => {
+    const open = links.style.display === 'flex';
+    links.style.display = open ? 'none' : 'flex';
+    links.style.cssText += open ? '' : 'position:absolute;top:64px;left:0;right:0;background:#0B1852;flex-direction:column;gap:0;padding:8px 24px 18px;';
+    if(!open){
+      links.querySelectorAll('a').forEach(a=>a.style.cssText='padding:12px 0;border-top:1px solid rgba(255,255,255,0.08);display:block;');
+    }
+  });
+
+  // enquiry form -> save to backend (CSV) -> open WhatsApp
+  const form = document.getElementById('enquiry-form');
+  if(form){
+    const submitBtn = form.querySelector('.form-submit');
+    const submitLabel = submitBtn.querySelector('.submit-label');
+
+    form.addEventListener('submit', async function(e){
+      e.preventDefault();
+      const nameField = document.querySelector('[data-field="name"]');
+      const phoneField = document.querySelector('[data-field="phone"]');
+      const name = document.getElementById('f-name').value.trim();
+      const phone = document.getElementById('f-phone').value.trim();
+      const service = document.getElementById('f-service').value;
+      const message = document.getElementById('f-message').value.trim();
+      const status = document.getElementById('form-status');
+
+      let valid = true;
+      nameField.classList.toggle('error', name.length === 0);
+      if(name.length === 0) valid = false;
+
+      const phoneDigits = phone.replace(/\D/g,'');
+      const phoneValid = phoneDigits.length >= 10;
+      phoneField.classList.toggle('error', !phoneValid);
+      if(!phoneValid) valid = false;
+
+      if(!valid){
+        status.textContent = 'Please fill in the highlighted fields.';
+        status.classList.add('show');
+        return;
+      }
+
+      submitBtn.disabled = true;
+      const originalLabel = submitLabel.textContent;
+      submitLabel.textContent = 'Saving...';
+      status.textContent = '';
+      status.classList.remove('show');
+
+      let saved = false;
+      try{
+        const res = await fetch('/api/enquiry', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({name, phone, service, message})
+        });
+        saved = res.ok;
+        if(!saved){
+          const err = await res.json().catch(()=>({}));
+          console.error('Enquiry save failed:', err);
+        }
+      }catch(err){
+        console.error('Enquiry save failed:', err);
+      }
+
+      let text = `Hi Kashvi Enterprises, I'd like to enquire about a service.%0A%0A`;
+      text += `*Name:* ${name}%0A`;
+      text += `*Phone:* ${phone}%0A`;
+      text += `*Service:* ${service}%0A`;
+      if(message.length){
+        text += `*Details:* ${message}`;
+      }
+      const waUrl = `https://wa.me/919606977966?text=${text}`;
+
+      status.textContent = saved
+        ? 'Enquiry saved. Opening WhatsApp...'
+        : "Couldn't reach the server, but opening WhatsApp so your enquiry still goes through.";
+      status.classList.add('show');
+      window.open(waUrl, '_blank');
+
+      if(saved) form.reset();
+      submitBtn.disabled = false;
+      submitLabel.textContent = originalLabel;
+    });
+
+    // clear error state as user types
+    ['f-name','f-phone'].forEach(id=>{
+      document.getElementById(id).addEventListener('input', function(){
+        this.closest('.field').classList.remove('error');
+      });
+    });
+  }
+
+  // scroll reveal
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, {threshold:0.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
