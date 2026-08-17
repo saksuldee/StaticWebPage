@@ -1,8 +1,2 @@
-venv/
-__pycache__/
-*.pyc
-enquiries.csv
-
-# Google Drive credentials — never commit these
-service-account.json
-.gdrive_state.json
+# Created by venv; see https://docs.python.org/3/library/venv.html
+*
